@@ -2,6 +2,10 @@
   "name": "propsoch",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=22.12.0",
+    "npm": ">=10.9.0"
+  },
   "dependencies": {
     "@react-google-maps/api": "^2.20.5",
     "@reduxjs/toolkit": "^2.5.0",
