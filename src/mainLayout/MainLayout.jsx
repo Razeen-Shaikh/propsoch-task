@@ -1,12 +1,13 @@
 import React from "react";
-import Homepage from "../screens/Homepage";
 import Header from "../components/Header";
+import BottomNav from "../components/BottomNav";
 
-const MainLayout = () => {
+const MainLayout = ({ children }) => {
   return (
     <>
       <Header />
-      <Homepage />
+      { children }
+      <BottomNav />
     </>
   );
 };

@@ -26,8 +26,15 @@ const productsSlice = createSlice({
     incrementPage: (state) => {
       state.page += 1;
     },
+    toggleFavorite: (state, action) => {
+      const productId = action.payload;
+      const product = state.products.find(prod => prod.id === productId);
+      if (product) {
+        product.favorite = !product.favorite;
+      }
+    },
   },
 });
 
-export const { setProducts, appendProducts, setLoading, setHasMore, incrementPage } = productsSlice.actions;
+export const { setProducts, appendProducts, setLoading, setHasMore, incrementPage, toggleFavorite } = productsSlice.actions;
 export default productsSlice.reducer;

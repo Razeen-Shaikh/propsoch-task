@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   setProducts,
@@ -16,16 +16,42 @@ const Homepage = () => {
     (state) => state.products
   );
 
+  const [visibleCards, setVisibleCards] = useState(0);
+
+  const calculateVisibleCards = () => {
+    const cardHeight = 350;
+    const viewportHeight = window.innerHeight;
+    const productsPerRow = 2;
+    const rowsPerViewport = Math.ceil(viewportHeight / cardHeight);
+
+    return rowsPerViewport * productsPerRow;
+  };
+
   useEffect(() => {
-    const initialProducts = productsData.slice(0, 4);
+    const initialVisibleCards = calculateVisibleCards();
+    setVisibleCards(initialVisibleCards);
+    const initialProducts = productsData.slice(0, initialVisibleCards);
     dispatch(setProducts(initialProducts));
   }, [dispatch]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setVisibleCards(calculateVisibleCards());
+    };
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   const loadMoreProducts = () => {
     if (loading || !hasMore) return;
 
     dispatch(setLoading(true));
-    const newProducts = productsData.slice(page * 4, (page + 1) * 4);
+    const newProducts = productsData.slice(
+      page * visibleCards,
+      (page + 1) * visibleCards
+    );
     if (newProducts.length === 0) {
       dispatch(setHasMore(false));
     } else {
@@ -43,8 +69,14 @@ const Homepage = () => {
   };
 
   return (
-    <div onScroll={handleScroll} style={{ overflowY: "auto", height: "100vh" }}>
-      <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-around" }}>
+    <div onScroll={handleScroll} style={{ overflowY: "auto", height: "80vh" }}>
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "space-around",
+        }}
+      >
         {products.map((product) => (
           <Product product={product} key={product.id} />
         ))}

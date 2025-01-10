@@ -1,14 +1,12 @@
-import { useEffect } from 'react';
-import './App.css';
-import MainLayout from './mainLayout/MainLayout';
-import { Provider } from 'react-redux';
-import store from './redux/store';
+import MainLayout from "./mainLayout/MainLayout";
+import BaseRouter from "./routing/BaseRoutes";
+import "./App.css";
 
 function App() {
-  useEffect(() => {})
-
   return (
-      <MainLayout />
+    <MainLayout>
+      <BaseRouter />
+    </MainLayout>
   );
 }
 

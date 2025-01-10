@@ -1,10 +1,17 @@
 import React, { useEffect } from "react";
-import { FaEye, FaStar } from "react-icons/fa";
+import { FaEye, FaHeart, FaStar } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { toggleFavorite } from "../redux/productsSlice";
+import { useNavigate } from "react-router-dom";
+import ImageCarousel from "./ImageCarousel";
 import "./styles.css";
 
 const Product = ({ product }) => {
   const [color, setColor] = React.useState("red");
   const [date, setDate] = React.useState("");
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const parseDate = (dateStr) => {
     const [day, month, year] = dateStr.split(":").map(Number);
@@ -14,6 +21,14 @@ const Product = ({ product }) => {
   const getFormattedDate = (date) => {
     const options = { month: "short", day: "numeric" };
     return new Date(date).toLocaleDateString("en-US", options);
+  };
+
+  const handleClick = (id) => {
+    dispatch(toggleFavorite(id));
+  };
+
+  const gotoProductDetail = () => {
+    navigate(`product/${product.id}`);
   };
 
   useEffect(() => {
@@ -39,12 +54,30 @@ const Product = ({ product }) => {
     const formattedDateRange = `${startDate} – ${endDate}`;
 
     setDate(formattedDateRange);
-  }, []);
+  }, [product.endDate, product.rating, product.startDate]);
 
   return (
     <div className="card-container">
       <div className="product-image-container">
-        <img className="product-image" src={product.images[0]} alt="Product" />
+        {product.mostLiked && <span className="most-liked">Most Liked</span>}
+        {product.favorite ? (
+          <FaHeart
+            className="wishlist"
+            color="#F20C0C"
+            onClick={() => handleClick(product.id)}
+          />
+        ) : (
+          <FaHeart
+            className="wishlist"
+            color="#A9A9A9"
+            onClick={() => handleClick(product.id)}
+          />
+        )}
+        <ImageCarousel
+          className="product-image"
+          images={product.images}
+          gotoProductDetail={gotoProductDetail}
+        />
       </div>
       <div className="product-info">
         <div className="product-meta">

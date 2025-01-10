@@ -9,3 +9,177 @@
 body {
   font-family: Poppins;
 }
+
+
+/* Product Details */
+
+.card {
+  border-radius: 10px;
+  margin: 20px;
+  overflow: hidden;
+}
+
+.image-section {
+  height: 486px;
+  position: relative;
+}
+
+.image-section .carousel-image {
+  height: 486px !important;
+}
+
+.most-liked {
+  position: absolute;
+  color: #444444;
+  background-color: #FFFFFF;
+  border-radius: 16px;
+  font-size: 12px;
+  line-height: 22px;
+  text-align: center;
+  font-weight: 400;
+  top: 10px;
+  left: 10px;
+  z-index: 1;
+  padding: 2px 10px 2px 10px;
+}
+
+.image {
+  width: 100%;
+  object-fit: cover;
+}
+
+.details {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.price {
+  font-weight: bold;
+  color: #3f51b5;
+}
+
+.favorite-button {
+  margin: 10px 0;
+  padding: 8px 12px;
+  background: #3f51b5;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.amenities {
+  margin-bottom: 2.5rem;
+}
+
+.amenities h4 {
+  font-family: Lato;
+  color: #252B5C;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.amenities ul {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-right: 10px;
+  margin-top: 20px;
+}
+
+.amenities .amenity {
+  list-style-type: none;
+  font-size: 10px;
+  font-weight: 700;
+  border-radius: 20px;
+  padding: 8.5px 24px 8.5px 24px;
+  background-color: #F5F4F8;
+  color: #252B5C;
+}
+
+.amenities .selected {
+  background-color: #234F68;
+  color: #FFFFFF;
+}
+
+.details .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.details .title,
+.details .price {
+  font-size: 25px;
+  font-weight: 500;
+  color: #252B5C;
+}
+
+.details .location,
+.details .text {
+  font-size: 16px;
+  font-weight: 400;
+  color: #888888;
+  font-family: Inter;
+  margin-top: 8px;
+  margin-bottom: 10px;
+}
+
+.details .price {
+  text-align: right;
+}
+
+.location-heading {
+  font-size: 18px;
+  font-family: Lato;
+  font-weight: 700;
+  color: #252B5C;
+}
+
+.address-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.map-pin-container {
+  background-color: #FF750433;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 25px;
+}
+
+.map-pin {
+  width: 24px;
+  height: 24px;
+}
+
+.address {
+  font-family: Lato;
+  font-size: 12px;
+  font-weight: 400;
+  color: #53587A;
+  margin-left: 8px;
+}
+
+.nearby-locations {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.nearby-locations p {
+  font-size: 12px;
+  font-weight: 600;
+  color: #1F4C6B;
+  border-radius: 20px;
+  padding: 7.5px 25px 7.5px 25px;
+  background-color: #F5F4F8;
+}
